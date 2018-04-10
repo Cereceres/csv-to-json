@@ -1,0 +1,24 @@
+{
+  "name": "csv-to-json",
+  "version": "0.0.1",
+  "description": "transform csv text to json",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cereceres/csv-to-json.git"
+  },
+  "keywords": [
+    "json",
+    "csv",
+    "transform"
+  ],
+  "author": "Jesus Cereceres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cereceres/csv-to-json/issues"
+  },
+  "homepage": "https://github.com/Cereceres/csv-to-json#readme"
+}
