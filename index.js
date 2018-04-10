@@ -1,17 +1,17 @@
 const { keys: getKeys } = Object;
 
-module.exports = (_csv, splitedBy = '\n', rowSeparatedBy = ',') => {
-    const csv = _csv.split(splitedBy);
-    const keys = csv.shift().split(rowSeparatedBy);
+module.exports = (_csv, splittedBy = '\n', columnSeparatedBy = ',') => {
+    const csv = _csv.split(splittedBy);
+    const keys = csv.shift().split(columnSeparatedBy);
     return csv
-        .map((row) => row.trim().split(rowSeparatedBy))
+        .map((row) => row.trim().split(columnSeparatedBy))
         .map((row) => keys.reduce((json, key, column) => {
             json[key] = row[column];
             return json;
         }, {}));
 };
 
-module.exports.inverse = (arrayOfJson) => {
+module.exports.inverse = (arrayOfJson, splittedBy = '\n', columnSeparatedBy = ',') => {
     if (!Array.isArray(arrayOfJson)) return arrayOfJson;
 
     const keys = new Set();
@@ -21,7 +21,7 @@ module.exports.inverse = (arrayOfJson) => {
             getKeys(json).forEach((key) => keys.add(key));
             return Array.from(keys).map((key) => null || json[key]);
         })
-        .map((row) => row.join(','));
-    csv.unshift(Array.from(keys));
-    return csv.join('\n');
+        .map((row) => row.join(columnSeparatedBy));
+    csv.unshift(Array.from(keys).join());
+    return csv.join(splittedBy);
 };

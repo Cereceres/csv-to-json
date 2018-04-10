@@ -22,7 +22,6 @@ describe('test to csv-to-json', () => {
     it('shoudl return a csv string', () => {
         const json = csvToJson('a,b,c\n1,2,3\n4,5,6');
         const csv = csvToJson.inverse(json);
-        console.log('csv ', csv);
         assert(csv === 'a,b,c\n1,2,3\n4,5,6');
     });
 
@@ -30,7 +29,6 @@ describe('test to csv-to-json', () => {
         const json = csvToJson('a,b,c\n1,2,3\n4,5,6');
         json.push({ a:4, d:10 });
         const csv = csvToJson.inverse(json);
-        console.log('csv ', csv);
         assert.equal(csv, 'a,b,c,d\n1,2,3\n4,5,6\n4,,,10');
     });
 });
