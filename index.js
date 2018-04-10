@@ -1,4 +1,4 @@
-const { values, keys: getKeys } = Object;
+const { keys: getKeys } = Object;
 
 module.exports = (_csv, splitedBy = '\n', rowSeparatedBy = ',') => {
     const csv = _csv.split(splitedBy);
@@ -12,14 +12,14 @@ module.exports = (_csv, splitedBy = '\n', rowSeparatedBy = ',') => {
 };
 
 module.exports.inverse = (arrayOfJson) => {
+    if (!Array.isArray(arrayOfJson)) return arrayOfJson;
+
     const keys = new Set();
 
     const csv = arrayOfJson
         .map((json) => {
             getKeys(json).forEach((key) => keys.add(key));
-            const row = [];
-            keys.forEach((key) => row.push(json[key]));
-            return row;
+            return Array.from(keys).map((key) => null || json[key]);
         })
         .map((row) => row.join(','));
     csv.unshift(Array.from(keys));
